@@ -299,6 +299,12 @@ body, html {
   <div class="w3-row-padding w3-center"> <!--class="w3-content w3-container w3-padding-64"> -->
     <iframe src="/ride_map.html" title="My most recent ride" width="100%" height="300" style="border:1px solid black;"}></iframe>
   </div>
+  <div id="display-write"></div>
+  <py-script>
+    def display_to_div():
+      display(ride_map, target="display-write")
+    </py-script>
+
   </div>
 </div>
 

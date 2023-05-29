@@ -100,6 +100,9 @@ activities.drop(
 rides = activities.loc[activities['type'] == 'Ride']
 rides = rides.loc[rides['max_speed'] > 0] # only rides with max speed > 0 (because they also have gps data)
 
+# set index based on start date
+rides.set_index('start_date_local', inplace=True)
+
 # plot map
 which_ride = 'last'
 # select one activity

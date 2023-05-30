@@ -3,6 +3,10 @@ import pandas as pd
 from pandas import json_normalize
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+from flask import Flask, render_template
+import folium
+
+app = Flask(__name__)
 
 auth_url = "https://www.strava.com/oauth/token"
 activities_url = "https://www.strava.com/api/v3/athlete/activities"
@@ -116,12 +120,18 @@ centroid = [ # center get coordinate
     np.mean([coord[0] for coord in my_ride['map.polyline']]),  #[0]
     np.mean([coord[1] for coord in my_ride['map.polyline']]) #[0]
 ]
-ride_map = folium.Map(location=centroid, zoom_start=10)
-folium.PolyLine(my_ride['map.polyline'], color='red').add_to(ride_map) # add route as layer
-ride_map.fit_bounds(ride_map.get_bounds(), padding=(20, 20)) # zoom in to route
-display(ride_map)
 
-ride_map.save("ride_map.html")
+@app.route('/')
+def index():
+    ride_map = folium.Map(location=centroid, zoom_start=10)
+    folium.PolyLine(my_ride['map.polyline'], color='red').add_to(ride_map) # add route as layer
+    ride_map.fit_bounds(ride_map.get_bounds(), padding=(20, 20)) # zoom in to route
+    # display(ride_map)
+    ride_map.save("ride_map.html")
+    return render_template('index.html', map_html=ride_map)
+
+if __name__ == '__main__':
+    app.run()
 
 
 

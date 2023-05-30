@@ -128,11 +128,6 @@ def index():
     # display(ride_map)
 
     # save map
-    path = "/templates"
-    if not os.path.exists(path):
-        # Create a new directory because it does not exist
-        os.makedirs(path)
-
     ride_map.save("templates/ride_map.html")
     return render_template('index.html')
 

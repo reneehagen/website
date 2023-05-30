@@ -36,11 +36,6 @@ def index():
 
     if "activities" in locals(): print("Requested data.\n")
 
-    return render_template('index.html')    
-
-@app.route('/map')
-def map():
-
     # Seaborn is a data visualization library.
     import seaborn as sns
     # Matplotlib is a data visualization library. 
@@ -134,6 +129,11 @@ def map():
 
     # save map
     ride_map.save("templates/ride_map.html")
+
+    return render_template('index.html')    
+
+@app.route('/map')
+def map():
     
     return render_template('map.html')
 

@@ -121,7 +121,7 @@ centroid = [ # center get coordinate
     np.mean([coord[1] for coord in my_ride['map.polyline']]) #[0]
 ]
 
-@app.route('/')
+@app.route('/map1')
 def index():
     ride_map = folium.Map(location=centroid, zoom_start=10)
     folium.PolyLine(my_ride['map.polyline'], color='red').add_to(ride_map) # add route as layer

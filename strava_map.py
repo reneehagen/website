@@ -127,8 +127,9 @@ def index():
     folium.PolyLine(my_ride['map.polyline'], color='red').add_to(ride_map) # add route as layer
     ride_map.fit_bounds(ride_map.get_bounds(), padding=(20, 20)) # zoom in to route
     # display(ride_map)
-    ride_map.save("ride_map.html")
-    return render_template('index.html', map_html=ride_map)
+    # ride_map.save("ride_map.html")
+    return folium_map._repr_html_()
+    # return render_template('index.html', map_html=ride_map)
 
 if __name__ == '__main__':
     app.run()
